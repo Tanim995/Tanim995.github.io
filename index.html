@@ -3,22 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Ziaur Rahman — Client Relations & Tech</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Ziaur Rahman — Client Relations & Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f0e8;
-    --surface: #ede8dc;
-    --surface2: #e2dcd0;
-    --border: #ccc5b5;
-    --accent: #2d4a3e;
-    --accent2: #c17d3c;
-    --accent3: #8b3a3a;
-    --text: #1a1a14;
-    --muted: #6b6456;
-    --white: #fafaf5;
-    --tag-bg: rgba(45,74,62,.1);
-    --tag-border: rgba(45,74,62,.25);
+    --bg: #f9f8f6;
+    --white: #ffffff;
+    --text: #141414;
+    --muted: #6b6b6b;
+    --subtle: #9a9a9a;
+    --border: #e2e0dc;
+    --border-dark: #c8c5bf;
+    --accent: #1a3a2a;
+    --accent-light: #e8f0eb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101010;
+      --white: #181818;
+      --text: #efefef;
+      --muted: #8a8a8a;
+      --subtle: #555;
+      --border: #282828;
+      --border-dark: #383838;
+      --accent: #4a9e6e;
+      --accent-light: #1a2a20;
+    }
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,568 +38,472 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 300;
+    font-size: 15px;
     line-height: 1.75;
-    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* subtle paper texture */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 999;
-    opacity: .6;
-  }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 2.5rem; }
 
   /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
+    background: rgba(249,248,246,.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    nav { background: rgba(16,16,16,.95); }
+  }
+
+  .nav-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.1rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 4rem;
-    background: rgba(245,240,232,.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
   }
 
-  .logo {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .78rem;
-    color: var(--accent);
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
+  .nav-name {
+    font-family: 'Cormorant', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text);
     text-decoration: none;
-    color: var(--muted);
-    font-size: .8rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    transition: color .2s;
+    letter-spacing: .01em;
   }
-  .nav-links a:hover { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+
+  .nav-links a {
+    font-size: .75rem;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: .05em;
+    transition: color .15s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
 
   /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  #hero { padding: 9rem 0 5rem; border-bottom: 1px solid var(--border); }
+
+  .hero-eyebrow {
+    display: flex;
     align-items: center;
-    padding: 8rem 4rem 4rem;
-    gap: 4rem;
-    position: relative;
-    overflow: hidden;
+    gap: .8rem;
+    margin-bottom: 2.2rem;
   }
 
-  .hero-bg-text {
-    position: absolute;
-    bottom: -2rem;
-    right: -1rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 18vw;
-    color: rgba(45,74,62,.06);
-    line-height: 1;
-    pointer-events: none;
-    white-space: nowrap;
-    user-select: none;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    background: rgba(45,74,62,.1);
-    border: 1px solid rgba(45,74,62,.3);
-    border-radius: 100px;
-    padding: .35rem 1rem;
-    font-family: 'IBM Plex Mono', monospace;
+  .hero-eyebrow span {
     font-size: .72rem;
-    color: var(--accent);
-    margin-bottom: 2rem;
-    animation: fadeUp .6s ease both;
+    color: var(--muted);
+    letter-spacing: .1em;
+    font-weight: 400;
   }
 
-  .badge-dot {
+  .avail-dot {
     width: 7px; height: 7px;
     border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s infinite;
+    background: #3a9e5f;
+    display: inline-block;
+    flex-shrink: 0;
   }
-
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
   h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 5.5vw, 5.5rem);
-    line-height: 1.08;
-    font-weight: 700;
-    letter-spacing: -.01em;
-    animation: fadeUp .7s .1s ease both;
+    font-family: 'Cormorant', serif;
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin-bottom: 2rem;
   }
 
-  h1 em {
-    font-style: italic;
-    color: var(--accent2);
-  }
+  h1 em { font-style: italic; }
 
-  .hero-sub {
-    margin-top: 1.6rem;
-    font-size: 1rem;
+  .hero-bio {
+    font-size: .92rem;
     color: var(--muted);
-    max-width: 480px;
-    animation: fadeUp .7s .2s ease both;
+    max-width: 540px;
+    line-height: 1.85;
+    margin-bottom: 2rem;
   }
 
-  .hero-meta {
-    margin-top: 1.2rem;
+  .hero-contacts {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
-    animation: fadeUp .7s .25s ease both;
+    margin-bottom: 2.5rem;
   }
 
-  .hero-meta span {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .72rem;
+  .hero-contacts a, .hero-contacts span {
+    font-size: .75rem;
     color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: .4rem;
+    text-decoration: none;
+    letter-spacing: .03em;
+    transition: color .15s;
   }
 
-  .hero-cta {
-    margin-top: 2.5rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    animation: fadeUp .7s .3s ease both;
-  }
+  .hero-contacts a:hover { color: var(--text); }
+
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   .btn {
-    display: inline-block;
-    padding: .8rem 1.8rem;
-    border-radius: 5px;
-    font-size: .85rem;
+    font-size: .75rem;
     font-weight: 500;
+    letter-spacing: .07em;
     text-decoration: none;
-    letter-spacing: .04em;
-    transition: all .2s;
-    cursor: pointer;
+    padding: .75rem 1.8rem;
+    border-radius: 2px;
+    transition: all .15s;
+    display: inline-block;
   }
 
-  .btn-primary {
-    background: var(--accent);
-    color: var(--white);
-    border: 1px solid var(--accent);
-  }
+  .btn-fill { background: var(--text); color: var(--bg); border: 1px solid var(--text); }
+  .btn-fill:hover { opacity: .72; }
+  .btn-line { background: transparent; color: var(--text); border: 1px solid var(--border-dark); }
+  .btn-line:hover { border-color: var(--text); }
 
-  .btn-primary:hover {
-    background: #1e3328;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(45,74,62,.3);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  /* hero right side — stat cards */
-  .hero-stats {
+  /* stats */
+  .stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    animation: fadeUp .7s .35s ease both;
-  }
-
-  .stat-card {
-    background: var(--white);
+    grid-template-columns: repeat(4,1fr);
+    margin-top: 4rem;
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.6rem;
-    transition: transform .2s;
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--border);
+    gap: 1px;
   }
 
-  .stat-card:hover { transform: translateY(-3px); }
+  .stat { background: var(--white); padding: 1.6rem 1.3rem; }
 
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: var(--accent);
+  .stat-n {
+    font-family: 'Cormorant', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
     line-height: 1;
-    margin-bottom: .4rem;
+    color: var(--accent);
+    margin-bottom: .3rem;
   }
 
-  .stat-label {
-    font-size: .8rem;
-    color: var(--muted);
-    line-height: 1.3;
-  }
+  .stat-l { font-size: .7rem; color: var(--muted); line-height: 1.45; }
 
-  .stat-card.accent2 .stat-num { color: var(--accent2); }
-  .stat-card.accent3 .stat-num { color: var(--accent3); }
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
 
-  /* ── SECTIONS ── */
-  section {
-    padding: 6rem 4rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .72rem;
-    letter-spacing: .15em;
+  .sec-tag {
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    color: var(--accent);
     text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: .8rem;
+    margin-bottom: .7rem;
+    display: block;
   }
 
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    line-height: 1.15;
-    margin-bottom: 3rem;
-    font-weight: 700;
+  h2 {
+    font-family: 'Cormorant', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: -.01em;
+    margin-bottom: 2.8rem;
+    line-height: 1.1;
   }
 
   /* ── ABOUT ── */
-  #about {
-    background: var(--white);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+  .about-body { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+
+  .about-text p { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.85; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .about-text blockquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-family: 'Cormorant', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
   }
 
-  .about-grid {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    align-items: start;
-  }
+  .skills-col { display: flex; flex-direction: column; gap: 1.6rem; }
 
-  .about-text p { color: var(--muted); margin-bottom: 1.1rem; font-size: .95rem; }
-  .about-text p strong { color: var(--text); font-weight: 600; }
-
-  .skills-col { display: flex; flex-direction: column; gap: 1.8rem; }
-
-  .skill-group label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .68rem;
-    letter-spacing: .12em;
+  .sg-lbl {
+    font-size: .65rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    color: var(--subtle);
     text-transform: uppercase;
-    color: var(--accent);
     display: block;
-    margin-bottom: .6rem;
+    margin-bottom: .5rem;
   }
 
-  .tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
 
   .tag {
-    background: var(--tag-bg);
-    border: 1px solid var(--tag-border);
-    border-radius: 4px;
-    padding: .28rem .7rem;
-    font-size: .76rem;
-    color: var(--accent);
-    font-family: 'IBM Plex Mono', monospace;
+    font-size: .7rem;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: .2rem .65rem;
+    background: var(--white);
+    letter-spacing: .02em;
   }
 
   /* ── EXPERIENCE ── */
-  #experience { max-width: 1100px; margin: 0 auto; }
+  .exp-list { display: flex; flex-direction: column; }
 
-  .timeline { display: flex; flex-direction: column; }
-
-  .timeline-item {
+  .exp-item {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
+    grid-template-columns: 175px 1fr;
+    gap: 2.5rem;
     padding: 2.2rem 0;
     border-bottom: 1px solid var(--border);
   }
 
-  .timeline-item:last-child { border-bottom: none; }
+  .exp-item:first-child { padding-top: 0; }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
 
-  .timeline-left {
-    padding-top: .1rem;
-  }
+  .exp-left { padding-top: .1rem; }
 
-  .timeline-date {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .72rem;
-    color: var(--muted);
-    letter-spacing: .05em;
-    display: block;
-    margin-bottom: .4rem;
-  }
+  .exp-date { font-size: .72rem; color: var(--muted); display: block; margin-bottom: .25rem; }
 
-  .timeline-type {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .65rem;
-    color: var(--accent2);
+  .exp-type {
+    display: inline-block;
+    font-size: .62rem;
+    font-weight: 500;
     letter-spacing: .08em;
-    text-transform: uppercase;
-  }
-
-  .timeline-content h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: .15rem;
-  }
-
-  .company {
     color: var(--accent);
-    font-size: .82rem;
-    font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: .8rem;
+    text-transform: uppercase;
+    background: var(--accent-light);
+    border-radius: 2px;
+    padding: .1rem .5rem;
   }
 
-  .timeline-content ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: .4rem;
-  }
+  .exp-role { font-size: .95rem; font-weight: 600; margin-bottom: .1rem; letter-spacing: -.01em; }
 
-  .timeline-content ul li {
+  .exp-co { font-size: .78rem; color: var(--muted); margin-bottom: 1rem; letter-spacing: .02em; }
+
+  .exp-pts { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+
+  .exp-pts li {
+    font-size: .86rem;
     color: var(--muted);
-    font-size: .88rem;
     padding-left: 1.1rem;
     position: relative;
+    line-height: 1.65;
   }
 
-  .timeline-content ul li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--accent2);
-    font-size: .7rem;
-    top: .15rem;
-  }
+  .exp-pts li::before { content: '—'; position: absolute; left: 0; color: var(--border-dark); font-size: .8rem; }
 
   /* ── PROJECTS ── */
-  #projects {
-    background: var(--white);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
+  .proj-list { display: flex; flex-direction: column; gap: 0; }
 
-  .projects-inner { max-width: 1100px; margin: 0 auto; }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: var(--bg);
+  .proj-item {
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 2rem;
-    transition: all .25s;
-    position: relative;
+    border-radius: 4px;
+    background: var(--white);
+    margin-bottom: 1.5rem;
     overflow: hidden;
   }
 
-  .project-card::after {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, var(--accent), var(--accent2));
-    opacity: 0;
-    transition: opacity .25s;
+  .proj-item:last-child { margin-bottom: 0; }
+
+  .proj-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem 2rem 0;
+    gap: 1rem;
   }
 
-  .project-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(45,74,62,.12);
-  }
+  .proj-title-block {}
 
-  .project-card:hover::after { opacity: 1; }
-
-  .project-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .68rem;
-    color: var(--accent2);
+  .proj-num {
+    font-size: .65rem;
+    font-weight: 500;
     letter-spacing: .1em;
-    margin-bottom: 1rem;
+    color: var(--subtle);
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+    display: block;
   }
 
-  .project-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: .5rem;
+  .proj-title {
+    font-family: 'Cormorant', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 1.1;
+    margin-bottom: .3rem;
   }
 
-  .project-card p {
-    color: var(--muted);
-    font-size: .88rem;
-    margin-bottom: 1.4rem;
+  .proj-tagline {
+    font-size: .78rem;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: .03em;
   }
 
-  .project-stack { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.4rem; }
+  .proj-links-top { display: flex; gap: .8rem; flex-shrink: 0; padding-top: .2rem; }
 
-  .stack-tag {
-    background: rgba(193,125,60,.1);
-    border: 1px solid rgba(193,125,60,.25);
-    border-radius: 3px;
-    padding: .2rem .6rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .68rem;
-    color: var(--accent2);
-  }
-
-  .project-links { display: flex; gap: 1.2rem; }
-  .project-links a {
-    font-family: 'IBM Plex Mono', monospace;
+  .proj-link {
     font-size: .72rem;
-    color: var(--muted);
+    font-weight: 500;
+    color: var(--text);
     text-decoration: none;
-    transition: color .2s;
+    border: 1px solid var(--border-dark);
+    border-radius: 2px;
+    padding: .35rem .9rem;
     letter-spacing: .04em;
+    transition: all .15s;
+    white-space: nowrap;
   }
-  .project-links a:hover { color: var(--accent); }
-  .project-links a::after { content: ' →'; }
+
+  .proj-link:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  .proj-divider { height: 1px; background: var(--border); margin: 1.5rem 2rem 0; }
+
+  .proj-body { padding: 1.5rem 2rem 2rem; display: grid; grid-template-columns: 3fr 2fr; gap: 2.5rem; }
+
+  .proj-desc { font-size: .88rem; color: var(--muted); line-height: 1.85; }
+
+  .proj-desc p { margin-bottom: .8rem; }
+  .proj-desc p:last-child { margin-bottom: 0; }
+  .proj-desc strong { color: var(--text); font-weight: 500; }
+
+  .proj-meta {}
+
+  .proj-meta-label {
+    font-size: .62rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    color: var(--subtle);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: .5rem;
+    margin-top: 1.2rem;
+  }
+
+  .proj-meta-label:first-child { margin-top: 0; }
+
+  .proj-stack { display: flex; flex-wrap: wrap; gap: .3rem; }
+
+  .stag {
+    font-size: .68rem;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: .15rem .55rem;
+    background: var(--bg);
+    letter-spacing: .02em;
+  }
+
+  .proj-highlights { list-style: none; display: flex; flex-direction: column; gap: .35rem; }
+
+  .proj-highlights li {
+    font-size: .78rem;
+    color: var(--muted);
+    padding-left: .9rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .proj-highlights li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-size: 1.1rem; line-height: 1.2; }
 
   /* ── EDUCATION ── */
-  #education { max-width: 1100px; margin: 0 auto; }
+  .edu-list { display: flex; flex-direction: column; }
 
-  .edu-grid {
+  .edu-item {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.2rem;
+    grid-template-columns: 175px 1fr;
+    gap: 2.5rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
   }
 
-  .edu-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.8rem;
-    transition: transform .2s;
-  }
+  .edu-item:first-child { padding-top: 0; }
+  .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
 
-  .edu-card:hover { transform: translateY(-3px); }
+  .edu-year { font-size: .72rem; color: var(--muted); }
 
-  .edu-year {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .7rem;
-    color: var(--accent2);
-    letter-spacing: .1em;
-    margin-bottom: .8rem;
-  }
-
-  .edu-card h3 { font-size: .95rem; font-weight: 600; margin-bottom: .3rem; }
-  .edu-card .edu-school { color: var(--accent); font-size: .82rem; font-family: 'IBM Plex Mono', monospace; margin-bottom: .5rem; }
-  .edu-card .edu-gpa { color: var(--muted); font-size: .82rem; }
+  .edu-deg { font-size: .95rem; font-weight: 500; margin-bottom: .2rem; letter-spacing: -.01em; }
+  .edu-school { font-size: .82rem; color: var(--muted); margin-bottom: .5rem; }
+  .edu-detail { font-size: .8rem; color: var(--subtle); line-height: 1.6; }
 
   /* ── CONTACT ── */
-  #contact {
-    background: var(--accent);
-    color: var(--white);
-    text-align: center;
-    padding: 7rem 4rem;
-  }
+  #contact { border-bottom: none; }
 
-  #contact .section-label { color: rgba(255,255,255,.5); }
-  #contact .section-title { color: var(--white); }
+  .contact-intro { font-size: .9rem; color: var(--muted); max-width: 500px; margin-bottom: 2.5rem; line-height: 1.8; }
 
-  .contact-sub { color: rgba(255,255,255,.65); margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; margin-top: -1.5rem; }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    text-decoration: none;
-    color: rgba(255,255,255,.75);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: .75rem;
-    letter-spacing: .06em;
-    padding: .65rem 1.3rem;
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 5px;
-    transition: all .2s;
-  }
-
-  .contact-link:hover {
-    color: var(--white);
-    border-color: rgba(255,255,255,.6);
-    transform: translateY(-2px);
-  }
-
-  .contact-email {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    color: var(--white);
-    text-decoration: none;
-    border-bottom: 2px solid var(--accent2);
-    padding-bottom: .2rem;
-    transition: color .2s;
+  .contact-email-link {
     display: inline-block;
+    font-family: 'Cormorant', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 300;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: .15rem;
     margin-bottom: 2.5rem;
+    transition: border-color .15s;
   }
 
-  .contact-email:hover { color: var(--accent2); }
+  .contact-email-link:hover { border-color: var(--text); }
+
+  .contact-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .contact-row a {
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: .05em;
+    transition: color .15s;
+  }
+
+  .contact-row a:hover { color: var(--text); }
 
   /* ── FOOTER ── */
-  footer {
-    background: #1e2d26;
-    color: rgba(255,255,255,.35);
-    padding: 1.5rem 4rem;
+  .wrap-footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.8rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid var(--border);
   }
 
-  footer span { font-family: 'IBM Plex Mono', monospace; font-size: .7rem; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .wrap-footer span { font-size: .7rem; color: var(--subtle); letter-spacing: .03em; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    #hero { grid-template-columns: 1fr; padding-top: 7rem; }
-    .hero-bg-text { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1.1rem 1.5rem; }
+  @media (max-width: 680px) {
     .nav-links { display: none; }
-    section, #hero, #contact, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .timeline-item { grid-template-columns: 1fr; gap: .4rem; }
-    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .wrap, .nav-inner, .wrap-footer { padding-left: 1.4rem; padding-right: 1.4rem; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .about-body { grid-template-columns: 1fr; gap: 2.5rem; }
+    .exp-item, .edu-item { grid-template-columns: 1fr; gap: .4rem; }
+    .proj-header { flex-direction: column; }
+    .proj-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .wrap-footer { flex-direction: column; gap: .5rem; text-align: center; }
   }
 </style>
 </head>
@@ -596,116 +511,119 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">// ziaur.rahman</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-name">Ziaur Rahman</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div>
-    <div class="badge">
-      <span class="badge-dot"></span>
-      Open to Full-Time Opportunities
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="avail-dot"></span>
+      <span>Available for full-time opportunities</span>
     </div>
-    <h1>Client <em>Relations</em><br>& Tech.</h1>
-    <p class="hero-sub">
-      CSE graduate & client-facing professional with 5+ years bridging technology and business — from frontend development to CRM, business development, and IT operations.
+    <h1>Ziaur<br><em>Rahman</em></h1>
+    <p class="hero-bio">
+      Computer Science & Engineering graduate with over five years of professional experience at the intersection of technology, client relations, and business development. I build things and I build relationships — equally well.
     </p>
-    <div class="hero-meta">
-      <span>📍 Dhaka, Bangladesh</span>
-      <span>📧 Rahmantanim27@gmail.com</span>
+    <div class="hero-contacts">
+      <a href="mailto:Rahmantanim27@gmail.com">Rahmantanim27@gmail.com</a>
+      <a href="tel:+8801689052765">+880 1689-052765</a>
+      <span>Dhaka, Bangladesh</span>
     </div>
-    <div class="hero-cta">
-      <a href="#experience" class="btn btn-primary">View Experience</a>
-      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    <div class="cta-row">
+      <a href="#experience" class="btn btn-fill">View Experience</a>
+      <a href="#contact" class="btn btn-line">Get in Touch</a>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">5+</div>
+        <div class="stat-l">Years of professional experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">97%</div>
+        <div class="stat-l">Customer satisfaction rate maintained</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">79%</div>
+        <div class="stat-l">ROI improvement driven</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">57</div>
+        <div class="stat-l">Live television telecasts conducted</div>
+      </div>
     </div>
   </div>
-
-  <div class="hero-stats">
-    <div class="stat-card">
-      <div class="stat-num">5+</div>
-      <div class="stat-label">Years professional experience</div>
-    </div>
-    <div class="stat-card accent2">
-      <div class="stat-num">97%</div>
-      <div class="stat-label">Customer satisfaction rate achieved</div>
-    </div>
-    <div class="stat-card accent3">
-      <div class="stat-num">79%</div>
-      <div class="stat-label">ROI improvement driven at Pigeon</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">57+</div>
-      <div class="stat-label">Client interviews & telecasts conducted</div>
-    </div>
-  </div>
-
-  <div class="hero-bg-text">ZR</div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-grid">
-    <div class="about-text">
-      <div class="section-label">About Me</div>
-      <h2 class="section-title">Who I am</h2>
-      <p>
-        I'm <strong>S.Z.M.A. Ziaur Rahman</strong> — a Computer Science & Engineering graduate from Daffodil International University with a career built on the intersection of technology and human relationships.
-      </p>
-      <p>
-        With <strong>5+ years of experience</strong> across client relationship management, business development, IT operations, and frontend development, I've consistently delivered results by combining technical understanding with strong communication skills.
-      </p>
-      <p>
-        I've managed high-volume client accounts, conducted live television interviews with banks and NBFIs, maintained 97% CSAT scores, and also built responsive web applications from scratch. I bring both sides of the equation — the technical depth and the people skills.
-      </p>
-      <p>
-        Currently working as <strong>Executive, Client Services & Operations at Rapid Tech Flow Solution</strong>, while remaining open to the right full-time opportunity in client relations or tech operations.
-      </p>
-    </div>
-
-    <div class="skills-col">
-      <div class="section-label">Core Skills</div>
-      <div class="skill-group">
-        <label>Client & CRM</label>
-        <div class="tags">
-          <span class="tag">CRM Systems</span>
-          <span class="tag">Client Onboarding</span>
-          <span class="tag">Escalation Resolution</span>
-          <span class="tag">SLA Management</span>
-        </div>
+  <div class="wrap">
+    <span class="sec-tag">About</span>
+    <h2>Who I Am</h2>
+    <div class="about-body">
+      <div class="about-text">
+        <p>
+          I'm <strong>S.Z.M.A. Ziaur Rahman</strong> — a CSE graduate whose career has never fit neatly into one box, and I consider that a strength. Over five years I've worked as a frontend developer, a business development executive, a CRM specialist, and an IT operations lead. Each role has deepened both my technical understanding and my ability to communicate across teams and with clients at every level.
+        </p>
+        <blockquote>
+          "I believe the best professionals understand both the product and the person using it."
+        </blockquote>
+        <p>
+          At <strong>Pigeon Communication</strong>, I sat across from banking executives and NBFIs on live national television, representing client interests on Channel 24's Business Time program. At <strong>Fabrilife</strong>, I managed nearly a hundred customer interactions daily and maintained a near-perfect satisfaction rate. At <strong>Webmaster Pro</strong>, I started by writing code and ended up running client operations — which taught me more about software than any course did.
+        </p>
+        <p>
+          I bring to every role: clear communication, a solutions-first mindset, and the technical literacy to understand what engineers are building and explain it to stakeholders who don't. Currently based in Dhaka, open to the right opportunity locally or remotely.
+        </p>
       </div>
-      <div class="skill-group">
-        <label>Business</label>
-        <div class="tags">
-          <span class="tag">Business Development</span>
-          <span class="tag">Public Relations</span>
-          <span class="tag">Client Acquisition</span>
-          <span class="tag">Public Speaking</span>
+      <div class="skills-col">
+        <div>
+          <span class="sg-lbl">Client & CRM</span>
+          <div class="tags">
+            <span class="tag">CRM Systems</span>
+            <span class="tag">Client Onboarding</span>
+            <span class="tag">Escalation Resolution</span>
+            <span class="tag">SLA Management</span>
+            <span class="tag">Account Management</span>
+          </div>
         </div>
-      </div>
-      <div class="skill-group">
-        <label>Technical</label>
-        <div class="tags">
-          <span class="tag">HTML5 / CSS3</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">React</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">REST APIs</span>
+        <div>
+          <span class="sg-lbl">Business</span>
+          <div class="tags">
+            <span class="tag">Business Development</span>
+            <span class="tag">Public Relations</span>
+            <span class="tag">Client Acquisition</span>
+            <span class="tag">Public Speaking</span>
+            <span class="tag">B2B Sales</span>
+          </div>
         </div>
-      </div>
-      <div class="skill-group">
-        <label>Tools & Languages</label>
-        <div class="tags">
-          <span class="tag">MS Office Suite</span>
-          <span class="tag">Google Workspace</span>
-          <span class="tag">Bengali (Native)</span>
-          <span class="tag">English (Fluent)</span>
+        <div>
+          <span class="sg-lbl">Technical</span>
+          <div class="tags">
+            <span class="tag">HTML5 / CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+        <div>
+          <span class="sg-lbl">Tools & Languages</span>
+          <div class="tags">
+            <span class="tag">MS Office Suite</span>
+            <span class="tag">Google Workspace</span>
+            <span class="tag">Bengali — Native</span>
+            <span class="tag">English — Fluent</span>
+          </div>
         </div>
       </div>
     </div>
@@ -714,102 +632,105 @@
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="section-label">Career</div>
-    <h2 class="section-title">Work Experience</h2>
-    <div class="timeline">
+  <div class="wrap">
+    <span class="sec-tag">Career</span>
+    <h2>Work Experience</h2>
+    <div class="exp-list">
 
-      <div class="timeline-item">
-        <div class="timeline-left">
-          <span class="timeline-date">Dec 2024 — Present</span>
-          <span class="timeline-type">IT Operations</span>
+      <div class="exp-item">
+        <div class="exp-left">
+          <span class="exp-date">Dec 2024 — Present</span>
+          <span class="exp-type">IT Operations</span>
         </div>
-        <div class="timeline-content">
-          <h3>Executive, Client Services & Operations</h3>
-          <div class="company">Rapid Tech Flow Solution</div>
-          <ul>
-            <li>Primary liaison between clients and technical teams, ensuring timely resolution of IT-related issues.</li>
-            <li>Monitor and coordinate ongoing technical projects and service tickets within SLA timelines.</li>
-            <li>Manage client accounts, documentation, reporting, and process improvements to enhance service efficiency.</li>
+        <div>
+          <div class="exp-role">Executive, Client Services & Operations</div>
+          <div class="exp-co">Rapid Tech Flow Solution — Dhaka</div>
+          <ul class="exp-pts">
+            <li>Serve as the primary liaison between clients and technical teams, ensuring complex IT issues are communicated clearly and resolved within agreed SLA timelines.</li>
+            <li>Coordinate ongoing technical projects, track service tickets, and produce regular client-facing reports on service performance and delivery status.</li>
+            <li>Drive process improvements across internal workflows, reducing friction between sales, support, and engineering departments.</li>
           </ul>
         </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-left">
-          <span class="timeline-date">Jan 2024 — Jul 2024</span>
-          <span class="timeline-type">CRM / Customer Care</span>
+      <div class="exp-item">
+        <div class="exp-left">
+          <span class="exp-date">Jan 2024 — Jul 2024</span>
+          <span class="exp-type">CRM</span>
         </div>
-        <div class="timeline-content">
-          <h3>Executive, Customer Relationship Management</h3>
-          <div class="company">Fabrilife</div>
-          <ul>
-            <li>Handled 70–95 customer and rider (Pathao) calls daily; maintained accurate CRM records.</li>
-            <li>Managed daily communication across Facebook Messenger and Instagram, resolving queries and escalations.</li>
-            <li>Maintained a <strong>97% customer satisfaction rate</strong> across all channels.</li>
-            <li>Contributed to a <strong>23% improvement in ROI</strong> through consistent, high-volume client support.</li>
+        <div>
+          <div class="exp-role">Executive, Customer Relationship Management</div>
+          <div class="exp-co">Fabrilife — Dhaka</div>
+          <ul class="exp-pts">
+            <li>Managed 70–95 inbound customer and rider (Pathao) calls daily, logging all interactions accurately in the CRM and escalating critical cases to relevant teams.</li>
+            <li>Handled real-time social media queries and complaints across Facebook Messenger and Instagram, maintaining a response time consistently under two hours.</li>
+            <li>Achieved and sustained a <strong>97% customer satisfaction (CSAT) rate</strong>, the highest in the team, through empathetic communication and systematic follow-through.</li>
+            <li>Contributed to a measurable <strong>23% improvement in ROI</strong> by reducing churn through proactive client re-engagement and swift issue resolution.</li>
           </ul>
         </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-left">
-          <span class="timeline-date">Mar 2022 — Nov 2023</span>
-          <span class="timeline-type">Business Development</span>
+      <div class="exp-item">
+        <div class="exp-left">
+          <span class="exp-date">Mar 2022 — Nov 2023</span>
+          <span class="exp-type">Business Development</span>
         </div>
-        <div class="timeline-content">
-          <h3>Executive, Business Development</h3>
-          <div class="company">Pigeon Communication</div>
-          <ul>
-            <li>Conducted 57 one-on-one interviews & telecasts with clients including banks and NBFIs on Channel 24's Business Time program.</li>
-            <li>Contributed to a <strong>79% increase in ROI</strong> by securing new clients and strengthening existing accounts.</li>
-            <li>Liaised with internal teams for smooth handover and consistent service delivery to financial-institution clients.</li>
+        <div>
+          <div class="exp-role">Executive, Business Development</div>
+          <div class="exp-co">Pigeon Communication — Dhaka</div>
+          <ul class="exp-pts">
+            <li>Conducted <strong>57 live one-on-one interviews and telecasts</strong> with senior representatives from banks and NBFIs on Channel 24's Business Time program, representing clients before a national audience.</li>
+            <li>Generated and nurtured a pipeline of financial-institution clients, contributing directly to a <strong>79% increase in company ROI</strong> over the engagement period.</li>
+            <li>Developed proposals, presentations, and pitch materials tailored to the specific regulatory and operational context of Bangladesh's financial sector.</li>
+            <li>Coordinated closely with internal creative and production teams to ensure seamless client representation across all media engagements.</li>
           </ul>
         </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-left">
-          <span class="timeline-date">Oct 2020 — Dec 2021</span>
-          <span class="timeline-type">Client Services</span>
+      <div class="exp-item">
+        <div class="exp-left">
+          <span class="exp-date">Oct 2020 — Dec 2021</span>
+          <span class="exp-type">Client Services</span>
         </div>
-        <div class="timeline-content">
-          <h3>Executive, Client Services & Operations</h3>
-          <div class="company">Webmaster Pro</div>
-          <ul>
-            <li>Managed and nurtured high-value client relationships ensuring exceptional service at every touchpoint.</li>
-            <li>Oversaw end-to-end operational workflows, coordinating cross-functional teams to resolve escalated issues.</li>
-            <li>Reported performance metrics and operational insights to senior leadership to guide business strategy.</li>
+        <div>
+          <div class="exp-role">Executive, Client Services & Operations</div>
+          <div class="exp-co">Webmaster Pro — Dhaka</div>
+          <ul class="exp-pts">
+            <li>Managed a portfolio of high-value client accounts, serving as the single point of contact for all service-related matters from onboarding through delivery.</li>
+            <li>Oversaw end-to-end operational workflows, coordinating cross-functional teams to resolve escalated issues efficiently and transparently.</li>
+            <li>Prepared weekly performance metric reports and operational insights for senior leadership, informing business strategy and resource allocation.</li>
           </ul>
         </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-left">
-          <span class="timeline-date">Dec 2019 — Oct 2020</span>
-          <span class="timeline-type">Frontend Dev</span>
+      <div class="exp-item">
+        <div class="exp-left">
+          <span class="exp-date">Dec 2019 — Oct 2020</span>
+          <span class="exp-type">Frontend Dev</span>
         </div>
-        <div class="timeline-content">
-          <h3>Frontend Developer</h3>
-          <div class="company">Webmaster Pro</div>
-          <ul>
-            <li>Built and maintained responsive UIs using HTML5, CSS3, and JavaScript from UI/UX designs.</li>
-            <li>Collaborated with backend developers to integrate REST APIs and deliver consistent user experiences.</li>
+        <div>
+          <div class="exp-role">Frontend Developer</div>
+          <div class="exp-co">Webmaster Pro — Dhaka</div>
+          <ul class="exp-pts">
+            <li>Built and maintained fully responsive user interfaces from Figma designs using HTML5, CSS3, and vanilla JavaScript.</li>
+            <li>Collaborated with backend engineers to integrate REST APIs and ensure consistent, performant experiences across desktop and mobile devices.</li>
+            <li>This role gave me a lasting foundation in how software is built — an advantage I carry into every client-facing position I've held since.</li>
           </ul>
         </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-left">
-          <span class="timeline-date">Mar 2019 — Apr 2020</span>
-          <span class="timeline-type">Content (Remote)</span>
+      <div class="exp-item">
+        <div class="exp-left">
+          <span class="exp-date">Mar 2019 — Apr 2020</span>
+          <span class="exp-type">Content (Remote)</span>
         </div>
-        <div class="timeline-content">
-          <h3>Content Moderator & Writer</h3>
-          <div class="company">Glambassador Promotions — Vancouver, Canada (Remote)</div>
-          <ul>
-            <li>Reviewed and moderated user-generated content at scale to ensure compliance with platform policies.</li>
-            <li>Produced articles and social media copy; reported policy-violation trends to management.</li>
+        <div>
+          <div class="exp-role">Content Moderator & Writer</div>
+          <div class="exp-co">Glambassador Promotions — Vancouver, Canada (Remote)</div>
+          <ul class="exp-pts">
+            <li>Reviewed and moderated user-generated content at scale, enforcing platform community standards across a high-volume content pipeline.</li>
+            <li>Produced editorial articles and social media copy for the brand's digital channels, maintaining a consistent voice and tone.</li>
+            <li>Reported patterns of policy violations and content risk to management, informing updates to moderation guidelines.</li>
           </ul>
         </div>
       </div>
@@ -820,39 +741,121 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="projects-inner">
-    <div class="section-label">Built</div>
-    <h2 class="section-title">Personal Projects</h2>
-    <div class="projects-grid">
+  <div class="wrap">
+    <span class="sec-tag">Built</span>
+    <h2>Personal Projects</h2>
+    <div class="proj-list">
 
-      <div class="project-card">
-        <div class="project-num">01 — Web App</div>
-        <h3>AlertAura SOS</h3>
-        <p>A minimalist women's safety web app. Users save two emergency contacts and press one SOS button to instantly send an SMS with a Google Maps link of their live location.</p>
-        <div class="project-stack">
-          <span class="stack-tag">React</span>
-          <span class="stack-tag">Tailwind CSS</span>
-          <span class="stack-tag">Node.js</span>
-          <span class="stack-tag">Twilio</span>
-          <span class="stack-tag">Google Maps API</span>
+      <!-- PROJECT 1 -->
+      <div class="proj-item">
+        <div class="proj-header">
+          <div class="proj-title-block">
+            <span class="proj-num">Project 01</span>
+            <div class="proj-title">AlertAura SOS</div>
+            <div class="proj-tagline">A women's personal safety application</div>
+          </div>
+          <div class="proj-links-top">
+            <a href="https://github.com/Tanim995" target="_blank" class="proj-link">GitHub</a>
+          </div>
         </div>
-        <div class="project-links">
-          <a href="https://github.com/Tanim995" target="_blank">GitHub</a>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            <p>
+              AlertAura SOS was born from a straightforward but urgent question: <strong>what's the fastest way to tell someone where you are when you feel unsafe?</strong> The answer I built is a single red button.
+            </p>
+            <p>
+              The app allows a user to register two trusted emergency contacts in advance. In a moment of distress, one tap triggers an automated SMS — powered by Twilio's messaging API — containing a Google Maps link with the user's precise real-time coordinates. No typing. No calls. No apps to navigate. Just one action.
+            </p>
+            <p>
+              The frontend is built in React with Tailwind CSS for a clean, distraction-free UI designed to function under stress. The backend is a lightweight Node.js server that handles contact storage, session management, and Twilio webhook delivery. Location data is captured via the browser's Geolocation API and never stored — it is sent once, in real time, and discarded.
+            </p>
+            <p>
+              <strong>What I learned:</strong> building for high-stakes moments demands ruthless simplicity. Every decision — from button size to the number of screens — was made with a frightened user in mind. This project taught me that good UX is not about aesthetics; it's about clarity under pressure.
+            </p>
+          </div>
+          <div class="proj-meta">
+            <span class="proj-meta-label">Tech Stack</span>
+            <div class="proj-stack">
+              <span class="stag">React</span>
+              <span class="stag">Tailwind CSS</span>
+              <span class="stag">Node.js</span>
+              <span class="stag">Twilio API</span>
+              <span class="stag">Google Maps API</span>
+              <span class="stag">Geolocation API</span>
+            </div>
+            <span class="proj-meta-label">Key Features</span>
+            <ul class="proj-highlights">
+              <li>One-tap SMS with live location link</li>
+              <li>Two saved emergency contacts</li>
+              <li>No location data stored — privacy first</li>
+              <li>Fully responsive, mobile-first UI</li>
+              <li>Works on any modern browser, no install required</li>
+            </ul>
+            <span class="proj-meta-label">Type</span>
+            <div class="proj-stack">
+              <span class="stag">Web App</span>
+              <span class="stag">Safety Tech</span>
+              <span class="stag">Solo Build</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="project-num">02 — Management System</div>
-        <h3>SmartSkool Manager</h3>
-        <p>School management software built independently as a solo project, handling notifications, messaging, friend requests, and user management with improved security and performance at scale.</p>
-        <div class="project-stack">
-          <span class="stack-tag">User Management</span>
-          <span class="stack-tag">Messaging System</span>
-          <span class="stack-tag">Notifications</span>
-          <span class="stack-tag">Security</span>
+      <!-- PROJECT 2 -->
+      <div class="proj-item">
+        <div class="proj-header">
+          <div class="proj-title-block">
+            <span class="proj-num">Project 02</span>
+            <div class="proj-title">SmartSkool Manager</div>
+            <div class="proj-tagline">A school management and communication platform</div>
+          </div>
+          <div class="proj-links-top">
+            <a href="https://github.com/Tanim995" target="_blank" class="proj-link">GitHub</a>
+          </div>
         </div>
-        <div class="project-links">
-          <a href="https://github.com/Tanim995" target="_blank">GitHub</a>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <div class="proj-desc">
+            <p>
+              SmartSkool Manager started with a frustration I observed firsthand: <strong>schools in Bangladesh rely heavily on paper notices, phone trees, and informal WhatsApp groups</strong> to manage communication between administrators, teachers, students, and parents. It's fragmented, inconsistent, and prone to information getting lost.
+            </p>
+            <p>
+              This platform brings that communication into a single, structured environment. Administrators can broadcast official notices and announcements to the entire school or specific classes. Teachers can send direct messages to students or parents. Students can follow one another, send connection requests, and build a network within the school — similar in feel to a professional network, but purpose-built for an academic context.
+            </p>
+            <p>
+              The notification system is a core piece of the architecture: every action — a new message, a friend request, an announcement — triggers a real-time notification to the relevant user. I paid particular attention to <strong>security and performance at scale</strong>, implementing input validation, rate limiting, and role-based access control to ensure that students cannot access administrative functions, and that private messages remain private.
+            </p>
+            <p>
+              <strong>What I learned:</strong> user management at scale is harder than it looks. Designing a permission system that is flexible enough for a school's many roles — admin, teacher, student, parent — while remaining simple to maintain pushed me to think carefully about data architecture before writing a single line of feature code.
+            </p>
+          </div>
+          <div class="proj-meta">
+            <span class="proj-meta-label">Tech Stack</span>
+            <div class="proj-stack">
+              <span class="stag">User Management</span>
+              <span class="stag">Role-Based Access</span>
+              <span class="stag">Messaging System</span>
+              <span class="stag">Real-Time Notifications</span>
+              <span class="stag">Rate Limiting</span>
+              <span class="stag">Input Validation</span>
+            </div>
+            <span class="proj-meta-label">Key Features</span>
+            <ul class="proj-highlights">
+              <li>Multi-role user system (admin, teacher, student, parent)</li>
+              <li>Direct messaging with notification delivery</li>
+              <li>Friend/connection request system</li>
+              <li>School-wide and class-specific announcements</li>
+              <li>Role-based access control throughout</li>
+              <li>Designed for performance at institutional scale</li>
+            </ul>
+            <span class="proj-meta-label">Type</span>
+            <div class="proj-stack">
+              <span class="stag">Management System</span>
+              <span class="stag">EdTech</span>
+              <span class="stag">Solo Build</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -862,30 +865,34 @@
 
 <!-- EDUCATION -->
 <section id="education">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="section-label">Academic</div>
-    <h2 class="section-title">Education</h2>
-    <div class="edu-grid">
+  <div class="wrap">
+    <span class="sec-tag">Academic</span>
+    <h2>Education</h2>
+    <div class="edu-list">
 
-      <div class="edu-card">
-        <div class="edu-year">2018</div>
-        <h3>B.Sc. Computer Science & Engineering</h3>
-        <div class="edu-school">Daffodil International University</div>
-        <div class="edu-gpa">CGPA: 2.55 / 4.00</div>
+      <div class="edu-item">
+        <div class="edu-year">Graduated 2018</div>
+        <div>
+          <div class="edu-deg">B.Sc. Computer Science & Engineering</div>
+          <div class="edu-school">Daffodil International University, Dhaka</div>
+          <div class="edu-detail">Core studies in algorithms, data structures, software engineering, computer networks, and database systems. Final-year capstone project in web application development.</div>
+        </div>
       </div>
 
-      <div class="edu-card">
+      <div class="edu-item">
         <div class="edu-year">2014</div>
-        <h3>Higher Secondary Certificate (HSC)</h3>
-        <div class="edu-school">Patuakhali Govt. College — Barishal Board</div>
-        <div class="edu-gpa">GPA: 4.00 / 5.00</div>
+        <div>
+          <div class="edu-deg">Higher Secondary Certificate (HSC)</div>
+          <div class="edu-school">Patuakhali Govt. College — Barishal Board</div>
+        </div>
       </div>
 
-      <div class="edu-card">
+      <div class="edu-item">
         <div class="edu-year">2012</div>
-        <h3>Secondary School Certificate (SSC)</h3>
-        <div class="edu-school">Patuakhali Govt. Jubilee High School — Barishal Board</div>
-        <div class="edu-gpa">GPA: 4.56 / 5.00</div>
+        <div>
+          <div class="edu-deg">Secondary School Certificate (SSC)</div>
+          <div class="edu-school">Patuakhali Govt. Jubilee High School — Barishal Board</div>
+        </div>
       </div>
 
     </div>
@@ -894,20 +901,26 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">Let's Connect</div>
-  <h2 class="section-title">Get in Touch</h2>
-  <p class="contact-sub">Open to full-time roles in client relations, CRM, business development, or IT operations. Feel free to reach out.</p>
-  <a href="mailto:Rahmantanim27@gmail.com" class="contact-email">Rahmantanim27@gmail.com</a>
-  <div class="contact-links">
-    <a href="https://linkedin.com/in/actuallytanim" target="_blank" class="contact-link">LinkedIn</a>
-    <a href="https://github.com/Tanim995" target="_blank" class="contact-link">GitHub</a>
-    <a href="tel:+8801689052765" class="contact-link">+880 1689-052765</a>
+  <div class="wrap">
+    <span class="sec-tag">Contact</span>
+    <h2>Get in Touch</h2>
+    <p class="contact-intro">
+      I'm open to full-time roles in client relations, CRM, business development, or IT operations — in Dhaka or remotely. If you think there's a fit, I'd love to hear from you.
+    </p>
+    <a href="mailto:Rahmantanim27@gmail.com" class="contact-email-link">Rahmantanim27@gmail.com</a>
+    <div class="contact-row">
+      <a href="https://linkedin.com/in/actuallytanim" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Tanim995" target="_blank">GitHub</a>
+      <a href="tel:+8801689052765">+880 1689-052765</a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <span>© 2024 S.Z.M.A. Ziaur Rahman</span>
-  <span>Dhaka, Bangladesh</span>
+  <div class="wrap-footer">
+    <span>© 2024 S.Z.M.A. Ziaur Rahman</span>
+    <span>Dhaka, Bangladesh</span>
+  </div>
 </footer>
 
 </body>
